@@ -1,0 +1,858 @@
+/* =========================
+   WELLNEST - STYLE SHEET
+   BIK1273 DIGITAL LITERACIES
+   ========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #FAFAF7;
+    color: #26332C;
+    line-height: 1.6;
+}
+
+/* =========================
+   HEADER
+   ========================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 7%;
+
+    background: rgba(250, 250, 247, 0.95);
+    border-bottom: 1px solid #EAF2ED;
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #6B8E7B;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    color: #26332C;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #6B8E7B;
+}
+
+
+/* =========================
+   HERO
+   ========================= */
+
+.hero {
+    min-height: 88vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 80px 9%;
+
+    background: #EAF2ED;
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.small-title,
+.section-label {
+    color: #6B8E7B;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: clamp(45px, 6vw, 78px);
+    line-height: 1.05;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: #6B8E7B;
+}
+
+.hero-text {
+    max-width: 600px;
+    font-size: 18px;
+    color: #526158;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+
+/* =========================
+   HERO VISUAL
+   ========================= */
+
+.hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 35%;
+}
+
+.plant-circle {
+    width: 280px;
+    height: 280px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #FAFAF7;
+
+    font-size: 110px;
+
+    box-shadow:
+        0 20px 50px rgba(38, 51, 44, 0.10);
+
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+.button {
+    display: inline-block;
+
+    border: none;
+
+    padding: 14px 25px;
+
+    border-radius: 30px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.primary {
+    background: #6B8E7B;
+    color: white;
+}
+
+.primary:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 20px rgba(107, 142, 123, 0.25);
+}
+
+.secondary {
+    background: #F3D5C0;
+    color: #26332C;
+}
+
+.secondary:hover {
+    transform: translateY(-3px);
+}
+
+
+/* =========================
+   GENERAL SECTIONS
+   ========================= */
+
+.section {
+    padding: 100px 9%;
+    text-align: center;
+}
+
+.section h2 {
+    font-size: clamp(32px, 4vw, 50px);
+    line-height: 1.15;
+    margin-bottom: 20px;
+}
+
+.section-description {
+    max-width: 680px;
+    margin: 0 auto 45px;
+
+    color: #5B675F;
+    font-size: 17px;
+}
+
+.light-section {
+    background: #EAF2ED;
+}
+
+.about {
+    background: #FAFAF7;
+}
+
+
+/* =========================
+   CARDS
+   ========================= */
+
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 25px;
+
+    max-width: 1100px;
+
+    margin: 50px auto 0;
+}
+
+.card {
+    padding: 35px 30px;
+
+    background: white;
+
+    border-radius: 22px;
+
+    text-align: left;
+
+    border: 1px solid #EAF2ED;
+
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 15px 35px rgba(38, 51, 44, 0.08);
+}
+
+.card-icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #647068;
+    margin-bottom: 20px;
+}
+
+.card-link {
+    color: #6B8E7B;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+
+/* =========================
+   HEALTH HABITS
+   ========================= */
+
+.habit-grid {
+    max-width: 1100px;
+
+    margin: 50px auto 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+
+    text-align: left;
+}
+
+.habit {
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 25px;
+
+    background: white;
+
+    border-radius: 18px;
+
+    border: 1px solid #EAF2ED;
+
+    transition: 0.3s;
+}
+
+.habit:hover {
+    transform: translateY(-3px);
+}
+
+.habit > span {
+    font-size: 38px;
+}
+
+.habit h3 {
+    margin-bottom: 4px;
+}
+
+.habit p {
+    color: #68736B;
+}
+
+
+/* =========================
+   MOOD CHECK
+   ========================= */
+
+.mood-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 15px;
+
+    max-width: 850px;
+
+    margin: 40px auto;
+}
+
+.mood-button {
+    border: 2px solid transparent;
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 25px 10px;
+
+    cursor: pointer;
+
+    color: #26332C;
+
+    transition: 0.3s;
+}
+
+.mood-button span {
+    display: block;
+
+    font-size: 40px;
+
+    margin-bottom: 10px;
+}
+
+.mood-button:hover {
+    border-color: #6B8E7B;
+
+    transform: translateY(-5px);
+}
+
+.mood-response {
+    max-width: 700px;
+
+    margin: 30px auto;
+
+    padding: 30px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    min-height: 130px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    box-shadow:
+        0 10px 30px rgba(38, 51, 44, 0.06);
+}
+
+.mood-response h3 {
+    margin-bottom: 8px;
+}
+
+.mood-response p {
+    color: #627067;
+}
+
+.disclaimer {
+    max-width: 700px;
+
+    margin: 30px auto 0;
+
+    font-size: 12px;
+
+    color: #7B857E;
+}
+
+
+/* =========================
+   RESET ZONE
+   ========================= */
+
+.reset-grid {
+    max-width: 1100px;
+
+    margin: 50px auto 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 25px;
+}
+
+.reset-card {
+    background: white;
+
+    padding: 35px 25px;
+
+    border-radius: 22px;
+
+    border: 1px solid #EAF2ED;
+}
+
+.reset-icon {
+    font-size: 45px;
+
+    margin-bottom: 15px;
+}
+
+.reset-card h3 {
+    font-size: 24px;
+
+    margin-bottom: 10px;
+}
+
+.reset-card p {
+    color: #657068;
+
+    margin-bottom: 20px;
+}
+
+.breathing-circle {
+    width: 130px;
+    height: 130px;
+
+    margin: 25px auto;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #EAF2ED;
+
+    color: #6B8E7B;
+
+    font-weight: bold;
+
+    transition: transform 4s ease-in-out;
+}
+
+.breathing {
+    transform: scale(1.35);
+}
+
+.timer {
+    font-size: 50px;
+
+    font-weight: bold;
+
+    color: #6B8E7B;
+
+    margin: 25px 0;
+}
+
+.small-button {
+    background: #F3D5C0;
+
+    color: #26332C;
+
+    margin-left: 5px;
+}
+
+.quick-reset {
+    min-height: 70px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 15px;
+
+    margin: 20px 0;
+
+    background: #EAF2ED;
+
+    border-radius: 15px;
+
+    color: #526158;
+
+    font-weight: 600;
+}
+
+
+/* =========================
+   RESOURCES
+   ========================= */
+
+.resource-grid {
+    max-width: 1100px;
+
+    margin: 50px auto 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 25px;
+}
+
+.resource-card {
+    background: white;
+
+    text-align: left;
+
+    padding: 35px;
+
+    border-radius: 22px;
+
+    border: 1px solid #DDE9E1;
+
+    transition: 0.3s;
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 12px 30px rgba(38, 51, 44, 0.07);
+}
+
+.resource-icon {
+    font-size: 40px;
+
+    margin-bottom: 15px;
+}
+
+.resource-card h3 {
+    font-size: 22px;
+
+    margin-bottom: 12px;
+}
+
+.resource-card p {
+    color: #657068;
+
+    margin-bottom: 20px;
+}
+
+.emergency {
+    border: 2px solid #F3D5C0;
+}
+
+
+/* =========================
+   ETHICAL USE
+   ========================= */
+
+.ethical {
+    background: #26332C;
+
+    color: white;
+}
+
+.ethical .section-label {
+    color: #B9D1C1;
+}
+
+.ethical .section-description {
+    color: #D8E0DB;
+}
+
+.ethical-points {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    max-width: 900px;
+
+    margin: 30px auto 0;
+}
+
+.ethical-points span {
+    padding: 12px 18px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,0.08);
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   GROUP SECTION
+   ========================= */
+
+.group-section {
+    background: #FAFAF7;
+}
+
+.members {
+    max-width: 700px;
+
+    margin: 40px auto;
+
+    display: grid;
+
+    gap: 10px;
+}
+
+.members p {
+    padding: 15px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    font-weight: 600;
+
+    border: 1px solid #EAF2ED;
+}
+
+.course {
+    color: #6B756D;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+footer {
+    padding: 45px 20px;
+
+    text-align: center;
+
+    background: #EAF2ED;
+
+    color: #526158;
+}
+
+.footer-logo {
+    color: #6B8E7B;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    margin-bottom: 8px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+.copyright {
+    font-size: 12px;
+
+    margin-top: 15px !important;
+}
+
+
+/* =========================
+   RESPONSIVE DESIGN
+   ========================= */
+
+@media (max-width: 900px) {
+
+    header {
+        padding: 15px 5%;
+    }
+
+    nav {
+        gap: 12px;
+    }
+
+    nav a {
+        font-size: 12px;
+    }
+
+    .hero {
+        flex-direction: column;
+
+        text-align: center;
+
+        padding: 70px 6%;
+    }
+
+    .hero-content {
+        max-width: 800px;
+    }
+
+    .hero-text {
+        margin: auto;
+    }
+
+    .hero-visual {
+        width: 100%;
+
+        margin-top: 50px;
+    }
+
+    .cards,
+    .reset-grid,
+    .resource-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mood-grid {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+    .habit-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    header {
+        position: relative;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    .hero {
+        min-height: auto;
+
+        padding: 60px 6%;
+    }
+
+    .hero h1 {
+        font-size: 44px;
+    }
+
+    .hero-text {
+        font-size: 16px;
+    }
+
+    .plant-circle {
+        width: 200px;
+        height: 200px;
+
+        font-size: 80px;
+    }
+
+    .section {
+        padding: 70px 6%;
+    }
+
+    .section h2 {
+        font-size: 34px;
+    }
+
+    .mood-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .mood-button {
+        padding: 20px 8px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .button {
+        padding: 13px 20px;
+    }
+
+}

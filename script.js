@@ -1,12 +1,12 @@
-/* =========================
-   WELLNEST - JAVASCRIPT
+/* =========================================
+   WELLNEST - FINAL JAVASCRIPT
    BIK1273 DIGITAL LITERACIES
-   ========================= */
+   ========================================= */
 
 
-/* =========================
-   MOOD CHECK
-   ========================= */
+/* =========================================
+   1. MOOD CHECK
+   ========================================= */
 
 function showMood(mood) {
 
@@ -16,48 +16,47 @@ function showMood(mood) {
 
         great: {
             title: "😄 That's great!",
-            text: "Keep doing what makes you feel good. Remember that looking after your wellbeing is important even when things are going well."
+            text: "Keep doing the things that make you feel good. Take a moment to appreciate how you're feeling today."
         },
 
         good: {
             title: "🙂 Glad you're doing okay!",
-            text: "Keep taking care of yourself. Small habits like getting enough sleep, eating regularly and taking breaks can support your wellbeing."
+            text: "Keep looking after yourself. A little rest, movement or time with people you care about can help maintain your wellbeing."
         },
 
         okay: {
             title: "😐 It's okay to feel just okay.",
-            text: "You don't have to feel happy all the time. Consider taking a short break, talking to someone you trust or doing something that helps you relax."
+            text: "Take things one step at a time. Try a short break, drink some water or take a few slow breaths."
         },
 
         stressed: {
-            title: "😟 It sounds like you're feeling stressed.",
-            text: "Take a moment away from your work if you can. Try the breathing exercise or study-break timer in the Reset Zone."
+            title: "😟 Feeling stressed?",
+            text: "Pause for a moment. Try the breathing exercise below or take a short break before continuing with your work."
         },
 
         low: {
-            title: "😔 Be gentle with yourself today.",
-            text: "Consider reaching out to someone you trust. If these feelings continue or become difficult to manage, consider speaking with a counsellor or qualified professional."
+            title: "😔 It's okay to not feel okay.",
+            text: "Be kind to yourself today. Consider talking to someone you trust or visiting the support resources below if you need help."
         }
 
     };
 
-    const selected = messages[mood];
+    if (messages[mood]) {
 
-    response.innerHTML = `
-        <h3>${selected.title}</h3>
-        <p>${selected.text}</p>
-    `;
+        response.innerHTML = `
+            <h3>${messages[mood].title}</h3>
+            <p>${messages[mood].text}</p>
+        `;
 
-    response.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
+        response.classList.add("show");
+
+    }
 }
 
 
-/* =========================
-   BREATHING EXERCISE
-   ========================= */
+/* =========================================
+   2. BREATHING EXERCISE
+   ========================================= */
 
 let breathingRunning = false;
 
@@ -72,95 +71,122 @@ function startBreathing() {
     const circle = document.getElementById("breathingCircle");
     const text = document.getElementById("breathingText");
 
+    if (!circle || !text) {
+        return;
+    }
+
     let cycle = 0;
+    const totalCycles = 3;
 
-    function breathingCycle() {
+    function breathingStep() {
 
-        if (cycle >= 3) {
+        if (cycle >= totalCycles) {
 
-            circle.classList.remove("breathing");
+            circle.classList.remove("breathing-active");
+
+            circle.innerText = "Complete ✓";
 
             text.innerText =
-                "Well done. Take a moment before returning to your work.";
+                "Well done. Take a moment before continuing with your day.";
 
             breathingRunning = false;
 
             return;
         }
 
-        text.innerText = "Breathe in slowly...";
+        /* INHALE */
 
-        circle.classList.add("breathing");
+        circle.classList.add("breathing-active");
+        circle.innerText = "Breathe In";
+
+        text.innerText =
+            `Cycle ${cycle + 1} of ${totalCycles} • Slowly breathe in`;
 
         setTimeout(() => {
 
-            text.innerText = "Breathe out slowly...";
+            /* HOLD */
 
-            circle.classList.remove("breathing");
+            circle.innerText = "Hold";
+
+            text.innerText =
+                `Cycle ${cycle + 1} of ${totalCycles} • Hold gently`;
 
             setTimeout(() => {
 
-                cycle++;
+                /* EXHALE */
 
-                breathingCycle();
+                circle.innerText = "Breathe Out";
 
-            }, 4000);
+                text.innerText =
+                    `Cycle ${cycle + 1} of ${totalCycles} • Slowly breathe out`;
+
+                setTimeout(() => {
+
+                    cycle++;
+                    breathingStep();
+
+                }, 4000);
+
+            }, 2000);
 
         }, 4000);
-
     }
 
-    breathingCycle();
+    breathingStep();
 }
 
 
-/* =========================
-   STUDY BREAK TIMER
-   ========================= */
+/* =========================================
+   3. STUDY TIMER
+   ========================================= */
 
-let timerInterval;
-
+let timerInterval = null;
 let timeLeft = 25 * 60;
 
-function updateTimer() {
+function updateTimerDisplay() {
 
     const timer = document.getElementById("timer");
 
-    const minutes = Math.floor(timeLeft / 60);
+    if (!timer) {
+        return;
+    }
 
+    const minutes = Math.floor(timeLeft / 60);
     const seconds = timeLeft % 60;
 
     timer.innerText =
-        `${minutes}:${seconds.toString().padStart(2, "0")}`;
+        `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 }
 
 
 function startTimer() {
 
-    if (timerInterval) {
+    if (timerInterval !== null) {
         return;
     }
 
     timerInterval = setInterval(() => {
 
-        if (timeLeft <= 0) {
+        if (timeLeft > 0) {
+
+            timeLeft--;
+            updateTimerDisplay();
+
+        } else {
 
             clearInterval(timerInterval);
-
             timerInterval = null;
 
-            document.getElementById("timer").innerText = "00:00";
+            const timer = document.getElementById("timer");
+
+            if (timer) {
+                timer.innerText = "Break Time! 🎉";
+            }
 
             alert(
-                "Your study session is finished! Take a 5-minute break."
+                "Your 25-minute study session is complete! Take a 5-minute break."
             );
-
-            return;
         }
-
-        timeLeft--;
-
-        updateTimer();
 
     }, 1000);
 }
@@ -174,16 +200,13 @@ function resetTimer() {
 
     timeLeft = 25 * 60;
 
-    updateTimer();
+    updateTimerDisplay();
 }
 
 
-updateTimer();
-
-
-/* =========================
-   QUICK RESET ACTIVITIES
-   ========================= */
+/* =========================================
+   4. QUICK RESET ACTIVITIES
+   ========================================= */
 
 function quickActivity() {
 
@@ -193,71 +216,199 @@ function quickActivity() {
 
         "🚶 Take a 5-minute walk.",
 
+        "🫁 Take 3 slow and comfortable breaths.",
+
+        "📵 Put your phone away for 10 minutes.",
+
+        "🎵 Listen to one relaxing song.",
+
         "🧘 Stretch your shoulders and neck.",
 
-        "📵 Put your phone away for 5 minutes.",
-
-        "🎵 Listen to one calming song.",
+        "👥 Message a friend and check in with them.",
 
         "🌿 Step outside and get some fresh air.",
 
-        "👥 Message someone you trust.",
+        "👀 Look away from your screen for a few minutes.",
 
-        "😴 Close your eyes and rest for two minutes.",
-
-        "📚 Step away from your study materials for a short break.",
-
-        "🫁 Take five slow, comfortable breaths."
+        "✍️ Write down one thing you are grateful for."
 
     ];
+
+    const box = document.getElementById("quickReset");
+
+    if (!box) {
+        return;
+    }
 
     const randomIndex =
         Math.floor(Math.random() * activities.length);
 
-    document.getElementById("quickReset").innerText =
-        activities[randomIndex];
+    box.innerHTML = `
+        <strong>${activities[randomIndex]}</strong>
+    `;
+
+    box.classList.add("show");
+
 }
 
 
-/* =========================
-   NAVIGATION ACTIVE EFFECT
-   ========================= */
+/* =========================================
+   5. BACK TO TOP BUTTON
+   ========================================= */
 
-const sections =
-    document.querySelectorAll("section");
+function createBackToTop() {
 
-const navLinks =
-    document.querySelectorAll("nav a");
+    const button = document.createElement("button");
 
+    button.id = "backToTop";
 
-window.addEventListener("scroll", () => {
+    button.innerText = "↑";
 
-    let current = "";
+    button.setAttribute(
+        "aria-label",
+        "Back to top"
+    );
 
-    sections.forEach(section => {
+    document.body.appendChild(button);
 
-        const sectionTop =
-            section.offsetTop - 150;
+    button.addEventListener("click", () => {
 
-        if (window.scrollY >= sectionTop) {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
 
-            current = section.getAttribute("id");
+    });
+
+    window.addEventListener("scroll", () => {
+
+        if (window.scrollY > 500) {
+
+            button.classList.add("visible");
+
+        } else {
+
+            button.classList.remove("visible");
 
         }
 
     });
+}
 
 
-    navLinks.forEach(link => {
+/* =========================================
+   6. SMOOTH NAVIGATION
+   ========================================= */
 
-        link.classList.remove("active");
+function setupNavigation() {
 
-        if (link.getAttribute("href") === `#${current}`) {
+    const links = document.querySelectorAll(
+        'nav a[href^="#"]'
+    );
 
-            link.classList.add("active");
+    links.forEach(link => {
 
-        }
+        link.addEventListener("click", function(event) {
+
+            const targetId =
+                this.getAttribute("href");
+
+            const target =
+                document.querySelector(targetId);
+
+            if (target) {
+
+                event.preventDefault();
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+
+        });
 
     });
+
+}
+
+
+/* =========================================
+   7. SCROLL REVEAL EFFECT
+   ========================================= */
+
+function setupScrollReveal() {
+
+    const elements = document.querySelectorAll(
+        ".card, .habit, .reset-card, .resource-card, .survey-card"
+    );
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("visible");
+
+                    observer.unobserve(entry.target);
+
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+    elements.forEach(element => {
+
+        element.classList.add("reveal");
+
+        observer.observe(element);
+
+    });
+
+}
+
+
+/* =========================================
+   8. CURRENT YEAR
+   ========================================= */
+
+function updateYear() {
+
+    const yearElement =
+        document.getElementById("current-year");
+
+    if (yearElement) {
+
+        yearElement.innerText =
+            new Date().getFullYear();
+
+    }
+
+}
+
+
+/* =========================================
+   9. PAGE INITIALISATION
+   ========================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    updateTimerDisplay();
+
+    setupNavigation();
+
+    setupScrollReveal();
+
+    createBackToTop();
+
+    updateYear();
 
 });
